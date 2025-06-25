@@ -34,10 +34,20 @@ az storage account create --name prathyusha2025tfstate --resource-group tfstate-
 az storage container create --name tfstate --account-name prathyusha2025tfstate
 ```
 
-4. **Create a Service Principal**:
+4. **get the details**:
 
 ```bash
-az ad sp create-for-rbac --name terraform-sp --role="Contributor" --scopes="/subscriptions/<your-subscription-id>" --sdk-auth
+az ad sp create-for-rbac --name "my-app-sp" --role Contributor --scopes /subscriptions/$(az account show --query id -o tsv) --sdk-auth
+
+this command will get the details:
+{
+  "clientId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "clientSecret": "xxxxxxxxxxxxxxxx",
+  "subscriptionId": "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy",
+  "tenantId": "zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz",
+  ...
+}
+h
 ```
 
 > Save the output JSON. It includes:
